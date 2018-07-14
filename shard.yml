@@ -1,0 +1,9 @@
+name: calculus-integral
+version: 0.1.0
+
+authors:
+  - Arthur Abramov <rifttech.arthur@gmail.com>
+
+crystal: 0.25.1
+
+license: MIT
