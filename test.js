@@ -1,18 +1,57 @@
-// riemann sum
-let f = (x) => x * x;
-let a = 4;
-let b = 10;
-let n = 1000;
-const dx = (b-a)/n;
-let x = a;
-let y_array = [];
+/**
+ * Left Riemann Sum
+ * @param {Number} a start point of interval [a,b]
+ * @param {Number} b end point of interval [a,b]
+ * @param {Number} n amount of intervals, should be n%2 == 0
+ * @param {Number} p precision
+ * @param {Number} f function
+ */
+const leftRiemann = (a,b,n,p,f) =>{
+    const dx = (b-a)/n;
+    let result = 0;
+    for(let i = 0; i < n; i++){
+        result += f(a + dx * i);
+    }
+    return result = (result * dx).toFixed(p);
+};
 
-while(x <= b){
-    x += dx;
-    y_array.push(f(x));
+/**
+ * Right Riemann Sum
+ * @param {Number} a start point of interval [a,b]
+ * @param {Number} b end point of interval [a,b]
+ * @param {Number} n amount of intervals, should be n%2 == 0
+ * @param {Number} p precision
+ * @param {Number} f function
+ */
+const rightRiemann = (a,b,n,p,f) =>{
+    const dx = (b-a)/n;
+    let result = 0;
+    for(let i = 1; i <= n; i++){
+        result += f(a + dx * i);
+    }
+    return result = (result * dx).toFixed(p);
 }
-let result = y_array.map(x => dx * x).reduce((a,b) => a + b);
-console.log(result.toFixed(2));
+
+/**
+ * Midpoint Rule
+ * @param {Number} a start point of interval [a,b]
+ * @param {Number} b end point of interval [a,b]
+ * @param {Number} n amount of intervals, should be n%2 == 0
+ * @param {Number} p precision
+ * @param {Number} f function
+ */
+const midpointRule = (a,b,n,p,f) =>{
+    const dx = (b-a)/n;
+    let result = 0;
+    for(let i = 0; i < n; i++){
+        result += f(a + dx * (i + 0.5));
+    }
+    return result = (result * dx).toFixed(p);
+}
+
+console.log("L", leftRiemann(4, 10, 1000, 5, x=> x * x ));
+console.log("R", rightRiemann(4, 10, 1000, 5, x=> x * x ));
+console.log("M", midpointRule(4, 10, 1000, 5, x=> x * x ));
 
 
 
