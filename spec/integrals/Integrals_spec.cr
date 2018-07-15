@@ -28,4 +28,14 @@ describe Integrals do
             puts "riemann_midpoit is #{result}"
         end
     end
+
+    describe "#trapezoidal_rule" do
+        it "calcs trapezoidal_rule" do
+            result = Integrals.trapezoidal_rule(4.0, 10.0, 1000, 3) do |x|
+                x * x
+            end
+            puts "trapezoidal_rule is #{result}"
+        end
+    end
+    
 end

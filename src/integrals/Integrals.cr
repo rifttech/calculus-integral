@@ -35,4 +35,15 @@ module Integrals extend self
         end
         (sum * dx).round precision
     end
+
+    def trapezoidal_rule(a : Float64, b : Float64, step : Int32, precision : Int32 = 2) : Float64
+        dx = (b - a) / step
+        result = 0.5 * ((yield a) + (yield b))
+        i = 1
+        while (i < step)
+            result += yield (a + dx * i)
+            i = i + 1
+        end
+        (result * dx).round precision
+    end
 end
