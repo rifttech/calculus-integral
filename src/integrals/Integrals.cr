@@ -1,4 +1,13 @@
+# 
+# Integral Calculus
+#
+#
 module Integrals extend self
+    
+    #
+    # Left Riemann Sum
+    #
+    #
     def riemann_left(a : Float32, b : Float32, step : Float32, precision : Int32 = 2) : Float32
         dx = (b-a) / step
         i = a
@@ -11,6 +20,10 @@ module Integrals extend self
         sum.round precision
     end
 
+    #
+    # Right Riemann Sum
+    #
+    #
     def riemann_right(a : Float32, b : Float32, step : Float32, precision : Int32 = 2) : Float32
         dx = (b-a) / step
         i = a
@@ -23,7 +36,10 @@ module Integrals extend self
         sum.round precision
     end
 
-
+    #
+    # Midpoint Rule
+    #
+    #
     def riemann_midpoint(a : Float32, b : Float32, step : Float32, precision : Int32 = 2) : Float32
         dx = (b-a) / step
         sum = 0.0_f32
@@ -36,6 +52,10 @@ module Integrals extend self
         (sum * dx).round precision
     end
 
+    #
+    # Trapezoidal Sum
+    #
+    #
     def trapezoidal_rule(a : Float64, b : Float64, step : Int32, precision : Int32 = 2) : Float64
         dx = (b - a) / step
         result = 0.5 * ((yield a) + (yield b))
